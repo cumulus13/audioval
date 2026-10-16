@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "audioval"
-version = "1.0.3"
+version = "1.0.4"
 description = "Advanced Audio Validator: Detect corrupted files and empty tags."
 readme = "README.md"
 requires-python = ">=3.7"
