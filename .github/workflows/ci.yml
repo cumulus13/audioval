@@ -1,0 +1,49 @@
+name: AudioVal CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # Added pytest-cov here
+        pip install flake8 pytest pytest-cov build
+        pip install -e .
+
+    - name: Lint with flake8
+      run: |
+        flake8 audioval --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 audioval --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
+
+    - name: Build package verification
+      run: |
+        python -m build
+
+    - name: CLI Dry Run
+      run: |
+        audioval -h
+
+    - name: Run Unit Tests with Coverage
+      run: |
+        # Generates a coverage report in the terminal and fails if under 90%
+        pytest tests/ -v --cov=audioval --cov-report=term-missing --cov-fail-under=90

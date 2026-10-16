@@ -1,0 +1,15 @@
+# PT backup directory
+.pt/
+
+# Ignore Sublime Text project files
+*.sublime-project
+*.sublime-workspace
+
+# Added entries (3 items)
+__pycache__/
+debug.log
+audioval.egg-info/
+
+# Added entries (2 items)
+*.flac
+*.mp3

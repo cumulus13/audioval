@@ -1,0 +1,33 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "audioval"
+version = "1.0.1"
+description = "Advanced Audio Validator: Detect corrupted files and empty tags."
+readme = "README.md"
+requires-python = ">=3.7"
+authors = [
+    { name = "Hadi Cahyadi", email = "cumulus13@gmail.com" },
+]
+dependencies = [
+    "mutagen>=1.46.0",
+    "rich>=13.0.0",
+]
+keywords = [
+    "audio",
+    "validator",
+    "mutagen",
+    "flac",
+    "mp3",
+    "cli",
+]
+
+[project.license]
+text = "MIT"
+
+[project.scripts]
+audioval = "audioval.cli:main"
