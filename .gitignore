@@ -13,3 +13,6 @@ audioval.egg-info/
 # Added entries (2 items)
 *.flac
 *.mp3
+
+# Added entries (1 items)
+gitignore_backup/
