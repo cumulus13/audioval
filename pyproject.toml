@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "audioval"
-version = "1.0.2"
+version = "1.0.3"
 description = "Advanced Audio Validator: Detect corrupted files and empty tags."
 readme = "README.md"
 requires-python = ">=3.7"
@@ -31,3 +31,17 @@ text = "MIT"
 
 [project.scripts]
 audioval = "audioval.cli:main"
+
+[tool.coverage.run]
+omit = [
+    "audioval/__main__.py",
+    "audioval/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "except KeyboardInterrupt:",
+    "sys.exit\\(130\\)",
+]
